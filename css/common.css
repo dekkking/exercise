@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*----------------------------------------
 	reset
 ----------------------------------------*/
@@ -131,6 +132,8 @@ ol {
 
 img {
   max-width: 100%;
+  width: 100%;
+  /* 追加 */
   height: auto;
   border: 0;
   vertical-align: top;
