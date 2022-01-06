@@ -1,6 +1,53 @@
 @charset "UTF-8";
 
 /*----------------------------------------
+	変数パーツ
+----------------------------------------*/
+// フォント
+$font-family: "Noto Sans", sans-serif;
+$font-family-en: "Oswald", sans-serif;
+
+// ブレイクポイント（モバイルファースト）
+$breakpoints: (
+	"xs": "(min-width: 320px),print",
+	"sm": "(min-width: 400px),print",
+	"md": "(min-width: 768px),print",
+	"lg": "(min-width: 1000px),print",
+	"xl": "(min-width: 1200px),print"
+);
+
+/*----------------------------------------
+	@mixin/@function
+----------------------------------------*/
+// メディアクエリ
+@mixin mq($breakpoint: xs) {
+	@media #{map-get($breakpoints, $breakpoint)} {
+		@content;
+	}
+}
+
+// rem変換
+@function rem($size) {
+	@return ($size / 16) + rem;
+}
+
+
+/*----------------------------------------
+	全体
+----------------------------------------*/
+html {
+	font-size: 16px;
+}
+
+body {
+	font-family: $font-family;
+}
+
+a {
+	text-decoration: none;
+}
+
+/*----------------------------------------
 	TOPページ専用
 ----------------------------------------*/
 
@@ -15,3 +62,57 @@
 
 /* pickupList
 ----------------------------------------*/
+
+/* footer */
+.footer {
+	margin: 0 auto;
+	padding: 0 20px;
+	background-color: #333333;
+
+	@include mq('md') {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0 50px;
+	}
+}
+
+.footer__menu {
+	@include mq('md') {
+		display: flex;
+		border-right: 1px solid #707070;
+	}
+}
+
+.footer__menu a {
+	display: block;
+	color: #fff;
+	font-size: rem(14);
+	font-weight: bold;
+	padding: rem(15) 0;
+	border-bottom: 1px solid #707070;
+
+	@include mq('md') {
+		border-bottom: none;
+		border-right: 1px solid #707070;
+		padding: rem(2.5) rem(14);
+	}
+}
+
+.footer__menu li:first-child > a {
+	padding-left: 0;
+}
+
+
+
+.footer__copyright {
+	color: #fff;
+	font-size: rem(14);
+	font-weight: bold;
+	text-align: center;
+	padding: rem(41.5) 0 rem(46);
+
+	@include mq('md') {
+		padding: rem(44) 0 rem(47);
+	}
+}
