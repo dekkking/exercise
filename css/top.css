@@ -21,14 +21,259 @@ a {
 }
 
 /*----------------------------------------
-	TOPページ専用
+	共通パーツ
 ----------------------------------------*/
+.headingL {
+  font-family: "Oswald", sans-serif;
+  font-size: 1.75rem;
+  color: #333333;
+  font-weight: medium;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  line-height: 1.5;
+  text-align: center;
+}
+
+@media (min-width: 768px), print {
+  .headingL {
+    font-size: 3rem;
+  }
+}
+
+/*----------------------------------------
+TOPページ専用
+----------------------------------------*/
+.mainContents {
+  padding: 50px 0 34px;
+  background-color: #fff;
+}
+
+@media (min-width: 768px), print {
+  .mainContents {
+    padding: 80px 0 41px;
+  }
+}
+
+.mainContents .container {
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px), print {
+  .mainContents .container {
+    padding: 0 40px;
+    max-width: 1164px;
+  }
+}
+
+.section {
+  margin-bottom: 46px;
+}
+
+@media (min-width: 768px), print {
+  .section {
+    margin-bottom: 80px;
+  }
+}
+
 /* mainVisual
 ----------------------------------------*/
 /* serviceList
 ----------------------------------------*/
+.serviceList {
+  padding-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media (min-width: 768px), print {
+  .serviceList {
+    padding-top: 40px;
+    margin-bottom: 20px;
+    margin-right: -20px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+  }
+}
+
+.serviceList__item {
+  margin-bottom: 20px;
+  padding-bottom: 1.25rem;
+  -webkit-box-shadow: 0 0 6px #0000001A;
+          box-shadow: 0 0 6px #0000001A;
+  max-width: 400px;
+}
+
+@media (min-width: 768px), print {
+  .serviceList__item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 calc(33.333333% - 60px / 3);
+            flex: 0 0 calc(33.333333% - 60px / 3);
+    margin-right: 20px;
+  }
+}
+
+.serviceList__thumb {
+  width: 100%;
+}
+
+.serviceList__thumb img {
+  width: 100%;
+}
+
+.serviceList__data {
+  padding: 1.25rem;
+}
+
+.serviceList__data dt {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 1.25rem;
+}
+
+.serviceList__data dd {
+  font-size: 1rem;
+  font-weight: medium;
+  color: #333333;
+  line-height: 1.875;
+}
+
+.serviceList__btn {
+  padding: 0 1.25rem;
+  margin-top: auto;
+}
+
+.buttonM {
+  display: inline-block;
+  width: 100%;
+  padding: 0.9375rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #FFFFFF;
+  background-color: #37952F;
+  text-align: center;
+  border: 2px solid #37952F;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.buttonM:hover {
+  background-color: transparent;
+  color: #37952F;
+}
+
+.centerButton {
+  text-align: center;
+}
+
+.buttonL {
+  display: inline-block;
+  width: 100%;
+  max-width: 25rem;
+  padding: 1.5625rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  color: #333333;
+  background-color: transparent;
+  text-align: center;
+  border: 2px solid #37952F;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.buttonL:hover {
+  color: #fff;
+  background-color: #37952F;
+}
+
 /* pickupList
 ----------------------------------------*/
+.pickupList {
+  padding-top: 20px;
+  margin-bottom: 40px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+@media (min-width: 768px), print {
+  .pickupList {
+    -ms-grid-columns: (1fr)[3];
+        grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1000px), print {
+  .pickupList {
+    -ms-grid-columns: (1fr)[4];
+        grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.pickupList__item {
+  max-width: 256px;
+  -ms-grid-column-align: center;
+      justify-self: center;
+}
+
+.pickupList__item a {
+  display: block;
+}
+
+.pickupList__thumb {
+  width: 100%;
+  margin-bottom: 0.6725rem;
+}
+
+.pickupList__title {
+  font-size: 0.875rem;
+  font-weight: bold;
+  line-height: calc(18 / 14);
+  color: #333333;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.pickupList__title::before {
+  content: "";
+  display: block;
+  border-top: 2px solid #333333;
+  border-right: 2px solid #333333;
+  width: 7px;
+  height: 7px;
+  position: absolute;
+  left: 0;
+  top: 6px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
 /* footer */
 .footer {
   margin: 0 auto;
