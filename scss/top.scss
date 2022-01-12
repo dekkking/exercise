@@ -7,6 +7,10 @@
 $font-family: "Noto Sans", sans-serif;
 $font-family-en: "Oswald", sans-serif;
 
+// カラー
+$text-color: #333333;
+$theme-color: #37952F;
+
 // ブレイクポイント（モバイルファースト）
 $breakpoints: (
 	"xs": "(min-width: 320px),print",
@@ -48,8 +52,55 @@ a {
 }
 
 /*----------------------------------------
-	TOPページ専用
+	共通パーツ
 ----------------------------------------*/
+// セクションタイトル
+.headingL {
+	font-family: $font-family-en;
+	font-size: rem(28);
+	color: $text-color;
+	font-weight: medium;
+	text-transform: uppercase;
+	letter-spacing: 0.2em;
+	line-height: 1.5;
+	text-align: center;
+
+	@include mq('md') {
+		font-size: rem(48);
+	}
+}
+
+
+
+/*----------------------------------------
+TOPページ専用
+----------------------------------------*/
+.mainContents {
+	padding: 50px 0 34px;
+	background-color: #fff;
+
+	@include mq('md') {
+		padding: 80px 0 41px; 
+	}
+}
+
+.mainContents .container {
+	padding: 0 20px;
+	margin: 0 auto;
+
+	@include mq('md') {
+		padding: 0 40px;
+		max-width: 1164px;
+	}
+}
+
+.section {
+	margin-bottom: 46px;
+
+	@include mq('md') {
+		margin-bottom: 80px;
+	}
+}
 
 
 /* mainVisual
@@ -58,10 +109,169 @@ a {
 
 /* serviceList
 ----------------------------------------*/
+.serviceList {
+	padding-top: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	
+	@include mq('md') {
+		padding-top: 40px;
+		margin-bottom: 20px;
+		margin-right: -20px;
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: stretch;
+	}
+}
+
+.serviceList__item {
+	margin-bottom: 20px;
+	padding-bottom: rem(20);
+	box-shadow: 0 0 6px #0000001A;
+	max-width: 400px;
+	
+	@include mq('md') {
+		display: flex; // ボタン下揃え
+		flex-direction: column; // ボタン下揃え
+		flex: 0 0 calc(33.333333% - 60px / 3);
+		margin-right: 20px;
+	}
+}
+
+.serviceList__thumb {
+	width: 100%;
+
+	& img {
+		width: 100%;
+	}
+}
+
+.serviceList__data {
+	padding: rem(20);
+
+	& dt {
+		font-size: rem(20);
+		font-weight: bold;
+		color: $text-color;
+		margin-bottom: rem(20)
+	}
+
+	& dd {
+		font-size: rem(16);
+		font-weight: medium;
+		color: $text-color;
+		line-height: 1.875;
+	}
+}
+
+.serviceList__btn {
+	padding: 0 rem(20);
+	margin-top: auto; // ボタン下揃え
+}
+
+.buttonM {
+	display: inline-block;
+	width: 100%;
+	padding: rem(15);
+	font-size: rem(16);
+	font-weight: bold;
+	color: #FFFFFF;
+	background-color: $theme-color;
+	text-align: center;
+	border: 2px solid $theme-color;
+	transition: .3s;
+
+	&:hover {
+		background-color: transparent;
+		color: $theme-color;
+	}
+}
+
+.centerButton {
+	text-align: center;
+}
+
+.buttonL {
+	display: inline-block;
+	width: 100%;
+	max-width: rem(400);
+	padding: rem(25);
+	font-size: rem(20);
+	font-weight: bold;
+	letter-spacing: 0.2em;
+	color: $text-color;
+	background-color: transparent;
+	text-align: center;
+	border: 2px solid $theme-color;
+	transition: .3s;
+
+	&:hover {
+		color: #fff;
+		background-color: $theme-color;
+	}
+}
+
+
 
 
 /* pickupList
 ----------------------------------------*/
+.pickupList {
+	padding-top: 20px;
+	margin-bottom: 40px;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr); //(繰り返し, カラムに対して目一杯)
+	gap: 15px; 
+
+	@include mq('md') {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	@include mq('lg') {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+
+.pickupList__item {
+	max-width: 256px;
+	justify-self: center; // 主軸に対して
+
+	& a {
+		display: block;
+	}
+}
+
+.pickupList__thumb {
+	width: 100%;
+	margin-bottom: rem(10.76);
+}
+
+.pickupList__title {
+	font-size: rem(14);
+	font-weight: bold;
+	line-height: calc(18 / 14);
+	color: $text-color;
+	padding-left: 1rem;
+	position: relative;
+
+	&::before { // 擬似要素も実態がある
+		content: "";
+		display: block;
+		border-top: 2px solid $text-color;
+		border-right: 2px solid $text-color;
+		width: 7px;
+		height: 7px;
+		position: absolute;
+		left: 0;
+		top: 6px;
+		transform: rotate(45deg);
+	}
+}
+
+
+
+
 
 /* footer */
 .footer {
