@@ -44,13 +44,13 @@ a {
 TOPページ専用
 ----------------------------------------*/
 .mainContents {
-  padding: 50px 0 34px;
+  padding-bottom: 34px;
   background-color: #fff;
 }
 
 @media (min-width: 768px), print {
   .mainContents {
-    padding: 80px 0 41px;
+    padding-bottom: 41px;
   }
 }
 
@@ -76,8 +76,273 @@ TOPページ専用
   }
 }
 
+/* header
+----------------------------------------*/
+.header {
+  width: 100%;
+  background-color: #fff;
+  padding-left: 20px;
+  position: relative;
+}
+
+@media (min-width: 768px), print {
+  .header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+}
+
+.header__title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.header__logo {
+  width: 104.79px;
+  margin-top: 13.92px;
+}
+
+.header__logo a {
+  display: block;
+}
+
+.header__logo img {
+  width: 100%;
+}
+
+.hamburger {
+  width: 50px;
+  height: 50px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  border-radius: none;
+  background-color: #37952f;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+}
+
+@media (min-width: 768px), print {
+  .hamburger {
+    display: none;
+  }
+}
+
+.hamburger__line {
+  display: block;
+  width: 25px;
+  height: 2px;
+  background-color: #fff;
+  position: relative;
+  margin: 0 auto;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.hamburger__line::before, .hamburger__line::after {
+  content: "";
+  display: block;
+  width: 25px;
+  height: 2px;
+  background-color: #fff;
+  position: absolute;
+  left: 0;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.hamburger__line::before {
+  top: -8px;
+}
+
+.hamburger__line::after {
+  bottom: -8px;
+}
+
+.hamburger__line.close {
+  background-color: transparent;
+}
+
+.hamburger__line.close::before {
+  top: 0;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+.hamburger__line.close::after {
+  bottom: 0;
+  -webkit-transform: rotate(-135deg);
+          transform: rotate(-135deg);
+}
+
+.gnav.collapse {
+  display: none;
+}
+
+.gnav {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  background-color: #fff;
+  width: 100%;
+}
+
+@media (min-width: 768px), print {
+  .gnav {
+    position: static;
+  }
+}
+
+.gnav__list {
+  border-top: 1px solid #E7E7E7;
+}
+
+@media (min-width: 768px), print {
+  .gnav__list {
+    border-top: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+.gnav__item {
+  margin: 0 1rem;
+}
+
+.gnav__link {
+  display: block;
+  width: 100%;
+  padding: 20px 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333333;
+  border-bottom: 1px solid #E7E7E7;
+  border-left: 5px solid transparent;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+@media (min-width: 768px), print {
+  .gnav__link {
+    display: inline-block;
+    border-bottom: none;
+    border-left: none;
+    font-size: 1.125rem;
+    padding: 0 0;
+    position: relative;
+  }
+}
+
+.gnav__link:hover {
+  border-left: 5px solid #37952f;
+  color: #333333;
+}
+
+@media (min-width: 768px), print {
+  .gnav__link:hover {
+    border-left: none;
+  }
+}
+
+@media (min-width: 768px), print {
+  .gnav__link::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #37952f;
+    position: absolute;
+  }
+}
+
 /* mainVisual
 ----------------------------------------*/
+.mainVisual {
+  background-color: #37952f;
+  margin: 0 auto 50px;
+}
+
+@media (min-width: 768px), print {
+  .mainVisual {
+    margin-bottom: 80px;
+  }
+}
+
+.mainVisual__inner {
+  padding: 20px 20px 30px;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  max-width: 1164px;
+}
+
+@media (min-width: 768px), print {
+  .mainVisual__inner {
+    padding: 49px 40px 49px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+  }
+}
+
+.mainVisual__catch {
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: bold;
+  line-height: 2;
+}
+
+@media (min-width: 768px), print {
+  .mainVisual__catch {
+    font-size: 1.75rem;
+    margin-right: 40px;
+    max-width: 22.5rem;
+  }
+}
+
+@media (min-width: 1000px), print {
+  .mainVisual__catch {
+    font-size: 2.25rem;
+    margin-right: calc(92 / 1124 * 100%);
+    max-width: 28.75rem;
+  }
+}
+
+.mainVisual__image {
+  max-width: 440px;
+  margin-bottom: 16px;
+}
+
+@media (min-width: 768px), print {
+  .mainVisual__image {
+    margin-bottom: 0;
+  }
+}
+
 /* serviceList
 ----------------------------------------*/
 .serviceList {
@@ -114,8 +379,8 @@ TOPページ専用
 .serviceList__item {
   margin-bottom: 20px;
   padding-bottom: 1.25rem;
-  -webkit-box-shadow: 0 0 6px #0000001A;
-          box-shadow: 0 0 6px #0000001A;
+  -webkit-box-shadow: 0 0 6px #0000001a;
+          box-shadow: 0 0 6px #0000001a;
   max-width: 400px;
 }
 
@@ -172,17 +437,17 @@ TOPページ専用
   padding: 0.9375rem;
   font-size: 1rem;
   font-weight: bold;
-  color: #FFFFFF;
-  background-color: #37952F;
+  color: #ffffff;
+  background-color: #37952f;
   text-align: center;
-  border: 2px solid #37952F;
-  -webkit-transition: .3s;
-  transition: .3s;
+  border: 2px solid #37952f;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
 .buttonM:hover {
   background-color: transparent;
-  color: #37952F;
+  color: #37952f;
 }
 
 .centerButton {
@@ -200,14 +465,14 @@ TOPページ専用
   color: #333333;
   background-color: transparent;
   text-align: center;
-  border: 2px solid #37952F;
-  -webkit-transition: .3s;
-  transition: .3s;
+  border: 2px solid #37952f;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
 .buttonL:hover {
   color: #fff;
-  background-color: #37952F;
+  background-color: #37952f;
 }
 
 /* pickupList
