@@ -79,6 +79,12 @@ TOPページ専用
 /* header
 ----------------------------------------*/
 .header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   width: 100%;
   background-color: #fff;
   padding-left: 20px;
@@ -87,27 +93,41 @@ TOPページ専用
 
 @media (min-width: 768px), print {
   .header {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding-left: 40px;
   }
 }
 
-.header__title {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+@media (min-width: 1000px), print {
+  .header {
+    padding-left: 50px;
+  }
 }
 
 .header__logo {
-  width: 104.79px;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 104.79px;
+          flex: 0 0 104.79px;
   margin-top: 13.92px;
+}
+
+@media (min-width: 768px), print {
+  .header__logo {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 170px;
+            flex: 0 0 170px;
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 1000px), print {
+  .header__logo {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 209.58px;
+            flex: 0 0 209.58px;
+  }
 }
 
 .header__logo a {
@@ -138,7 +158,7 @@ TOPページ専用
   }
 }
 
-.hamburger__line {
+#js-btnHamburger .hamburger__line {
   display: block;
   width: 25px;
   height: 2px;
@@ -149,7 +169,7 @@ TOPページ専用
   transition: .3s;
 }
 
-.hamburger__line::before, .hamburger__line::after {
+#js-btnHamburger .hamburger__line::before, #js-btnHamburger .hamburger__line::after {
   content: "";
   display: block;
   width: 25px;
@@ -161,32 +181,38 @@ TOPページ専用
   transition: .3s;
 }
 
-.hamburger__line::before {
+#js-btnHamburger .hamburger__line::before {
   top: -8px;
 }
 
-.hamburger__line::after {
+#js-btnHamburger .hamburger__line::after {
   bottom: -8px;
 }
 
-.hamburger__line.close {
+#js-btnHamburger.close .hamburger__line {
   background-color: transparent;
 }
 
-.hamburger__line.close::before {
+#js-btnHamburger.close .hamburger__line::before {
   top: 0;
   -webkit-transform: rotate(-45deg);
           transform: rotate(-45deg);
 }
 
-.hamburger__line.close::after {
+#js-btnHamburger.close .hamburger__line::after {
   bottom: 0;
-  -webkit-transform: rotate(-135deg);
-          transform: rotate(-135deg);
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
 }
 
 .gnav.collapse {
   display: none;
+}
+
+@media (min-width: 768px), print {
+  .gnav.collapse {
+    display: block;
+  }
 }
 
 .gnav {
@@ -200,7 +226,9 @@ TOPページ専用
 
 @media (min-width: 768px), print {
   .gnav {
+    display: block !important;
     position: static;
+    margin-left: auto;
   }
 }
 
@@ -214,11 +242,23 @@ TOPページ専用
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    padding: 39px 0 37px;
   }
 }
 
-.gnav__item {
-  margin: 0 1rem;
+@media (min-width: 768px), print {
+  .gnav__item {
+    margin: 0 0.875rem;
+  }
+}
+
+@media (min-width: 1000px), print {
+  .gnav__item {
+    margin: 0 1.125rem;
+  }
 }
 
 .gnav__link {
@@ -239,9 +279,15 @@ TOPページ専用
     display: inline-block;
     border-bottom: none;
     border-left: none;
-    font-size: 1.125rem;
+    font-size: 1rem;
     padding: 0 0;
     position: relative;
+  }
+}
+
+@media (min-width: 1000px), print {
+  .gnav__link {
+    font-size: 1.125rem;
   }
 }
 
@@ -264,6 +310,8 @@ TOPページ専用
     height: 3px;
     background-color: #37952f;
     position: absolute;
+    left: 0;
+    bottom: -7px;
   }
 }
 
