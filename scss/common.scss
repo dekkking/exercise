@@ -169,12 +169,51 @@ q::after {
 }
 
 /*----------------------------------------
+	変数パーツ
+----------------------------------------*/
+// フォント
+$font-family: "Noto Sans", sans-serif;
+$font-family-en: "Oswald", sans-serif;
+
+// カラー
+$text-color: #333333;
+$theme-color: #37952f;
+
+// ブレイクポイント（モバイルファースト）
+$breakpoints: (
+	"xs": "(min-width: 320px),print",
+	"sm": "(min-width: 400px),print",
+	"md": "(min-width: 768px),print",
+	"lg": "(min-width: 1000px),print",
+	"xl": "(min-width: 1200px),print",
+);
+
+/*----------------------------------------
+	@mixin/@function
+----------------------------------------*/
+// メディアクエリ
+@mixin mq($breakpoint: xs) {
+	@media #{map-get($breakpoints, $breakpoint)} {
+		@content;
+	}
+}
+
+// rem変換
+@function rem($size) {
+	@return ($size / 16) + rem;
+}
+
+
+/*----------------------------------------
 	base
 ----------------------------------------*/
+html {
+	font-size: 16px;
+}
+
 body {
     color: #333;
-    font-family: "Noto Sans JP", sans-serif;
-    line-height: 1.5;
+    font-family: $font-family;
 }
 a {
     color: #37952f;
@@ -188,23 +227,282 @@ a:hover {
 /*----------------------------------------
 	header
 ----------------------------------------*/
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	z-index: 1000;
+	width: 100%;
+	height: 50px;
+	background-color: #fff;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); //
 
+	@include mq("md") {
+		height: 100px;
+	}
+}
+
+.header__logo {
+	flex: 0 0 104.79px;
+	margin-top: 13.92px;
+	margin-left: 20px;
+
+	@include mq("md") {
+		flex: 0 0 170px;
+		margin-top: 0;
+		margin-left: 40px;
+	}
+
+	@include mq("lg") {
+		flex: 0 0 209.58px;
+		margin-left: 50px;
+	}
+	& a {
+		display: block;
+	}
+}
 /*----------------------------------------
 	hamburger
 ----------------------------------------*/
+.hamburger {
+	width: 50px;
+	height: 50px;
+	appearance: none;
+	border: none;
+	border-radius: none;
+	background-color: $theme-color;
+	cursor: pointer;
+	outline: none;
+	padding: 0;
 
+	@include mq("md") {
+		display: none;
+	}
+}
+
+#js-btnHamburger .hamburger__line {
+	display: block;
+	width: 25px;
+	height: 2px;
+	background-color: #fff;
+	position: relative;
+	margin: 0 auto;
+	transition: 0.3s;
+
+	&::before,
+	&::after {
+		content: "";
+		display: block;
+		width: 25px;
+		height: 2px;
+		background-color: #fff;
+		position: absolute;
+		left: 0;
+		transition: 0.3s;
+	}
+
+	&::before {
+		top: -8px;
+	}
+
+	&::after {
+		bottom: -8px;
+	}
+}
+
+#js-btnHamburger.close .hamburger__line {
+	background-color: transparent;
+
+	&::before {
+		top: 0;
+		transform: rotate(-45deg);
+	}
+
+	&::after {
+		bottom: 0;
+		transform: rotate(45deg);
+	}
+}
 /*----------------------------------------
 	gnav
 ----------------------------------------*/
+.gnav.collapse {
+	display: none; // 最初ナビゲーションは閉じた状態
+
+	@include mq("md") {
+		display: block;
+	}
+}
+
+.gnav {
+	display: block; // ナビゲーションが表示されている
+	position: absolute;
+	left: 0;
+	top: 100%;
+	background-color: #fff;
+	width: 100%;
+	height: calc(100vh - 50px);
+	overflow-y: auto;
+
+	@include mq("md") {
+		display: block !important;
+		position: static;
+		margin-left: auto;
+		height: auto;
+	}
+}
+
+.gnav__list {
+	border-top: 1px solid #e7e7e7;
+
+	@include mq("md") {
+		border-top: none;
+		display: flex;
+		justify-content: flex-end;
+		padding: 10px;
+	}
+}
+
+.gnav__item {
+	@include mq("md") {
+		margin: 0 rem(12);
+	}
+
+	@include mq("lg") {
+		margin: 0 rem(18);
+	}
+}
+
+.gnav__link {
+	display: block;
+	width: 100%;
+	padding: 20px 15px;
+	font-size: rem(16);
+	font-weight: bold;
+	color: $text-color;
+	border-bottom: 1px solid #e7e7e7;
+	border-left: 5px solid transparent;
+	transition: 0.3s;
+
+	@include mq("md") {
+		display: inline-block;
+		border-bottom: none;
+		border-left: none;
+		padding: 0 0;
+		position: relative;
+	}
+
+	@include mq("lg") {
+		font-size: rem(18);
+	}
+
+	&:hover {
+		border-left: 5px solid $theme-color;
+		color: $text-color;
+
+		@include mq("md") {
+			border-left: none;
+		}
+	}
+    &::after {
+        @include mq('md') {
+            display: block;
+			content: "";
+			width: 100%;
+			height: 3px;
+			background-color: $theme-color;
+			position: absolute;
+			left: 0;
+			bottom: -7px;
+			z-index: 50;
+            opacity: 0;
+            transition: 0.3s;
+        }
+    }
+
+	&:hover::after {
+		@include mq("md") {
+			opacity: 1;
+		}
+	}
+}
 
 /*----------------------------------------
 	mainContents
 ----------------------------------------*/
+.mainContents {
+	padding-bottom: 34px;
+	background-color: #fff;
 
+	@include mq("md") {
+		padding-bottom: 41px;
+	}
+}
+
+.mainContents .container {
+	padding: 0 20px;
+	margin: 0 auto;
+
+	@include mq("md") {
+		padding: 0 40px;
+		max-width: 1164px;
+	}
+}
 /*----------------------------------------
 	footer
 ----------------------------------------*/
+.footer {
+	margin: 0 auto;
+	padding: 0 20px;
+	background-color: #333333;
 
+	@include mq("md") {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0 50px;
+	}
+}
+
+.footer__menu {
+	@include mq("md") {
+		display: flex;
+		border-right: 1px solid #707070;
+	}
+}
+
+.footer__menu a {
+	display: block;
+	color: #fff;
+	font-size: rem(14);
+	font-weight: bold;
+	padding: rem(15) 0;
+	border-bottom: 1px solid #707070;
+
+	@include mq("md") {
+		border-bottom: none;
+		border-right: 1px solid #707070;
+		padding: rem(2.5) rem(14);
+	}
+}
+
+.footer__menu li:first-child > a {
+	padding-left: 0;
+}
+
+.footer__copyright {
+	color: #fff;
+	font-size: rem(14);
+	font-weight: bold;
+	text-align: center;
+	padding: rem(41.5) 0 rem(46);
+
+	@include mq("md") {
+		padding: rem(44) 0 rem(47);
+	}
+}
 /*----------------------------------------
 	container
 ----------------------------------------*/
@@ -212,11 +510,69 @@ a:hover {
 /*----------------------------------------
 	section
 ----------------------------------------*/
+.section {
+	margin-bottom: 46px;
 
+	@include mq("md") {
+		margin-bottom: 80px;
+	}
+}
 /*----------------------------------------
 	heading
 ----------------------------------------*/
+// セクションタイトル
+.headingL {
+	font-family: $font-family-en;
+	font-size: rem(28);
+	color: $text-color;
+	font-weight: medium;
+	text-transform: uppercase;
+	letter-spacing: 0.2em;
+	line-height: 1.5;
+	text-align: center;
+
+	@include mq("md") {
+		font-size: rem(48);
+	}
+}
 
 /*----------------------------------------
 	button
 ----------------------------------------*/
+.buttonM {
+	display: inline-block;
+	width: 100%;
+	padding: rem(15);
+	font-size: rem(16);
+	font-weight: bold;
+	color: #ffffff;
+	background-color: $theme-color;
+	text-align: center;
+	border: 2px solid $theme-color;
+	transition: 0.3s;
+
+	&:hover {
+		background-color: transparent;
+		color: $theme-color;
+	}
+}
+
+.buttonL {
+	display: inline-block;
+	width: 100%;
+	max-width: rem(400);
+	padding: rem(25);
+	font-size: rem(20);
+	font-weight: bold;
+	letter-spacing: 0.2em;
+	color: $text-color;
+	background-color: transparent;
+	text-align: center;
+	border: 2px solid $theme-color;
+	transition: 0.3s;
+
+	&:hover {
+		color: #fff;
+		background-color: $theme-color;
+	}
+}

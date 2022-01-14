@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*----------------------------------------
 	reset
 ----------------------------------------*/
@@ -163,12 +164,21 @@ q::after {
 }
 
 /*----------------------------------------
+	変数パーツ
+----------------------------------------*/
+/*----------------------------------------
+	@mixin/@function
+----------------------------------------*/
+/*----------------------------------------
 	base
 ----------------------------------------*/
+html {
+  font-size: 16px;
+}
+
 body {
   color: #333;
-  font-family: "Noto Sans JP", sans-serif;
-  line-height: 1.5;
+  font-family: "Noto Sans", sans-serif;
 }
 
 a {
@@ -185,27 +195,427 @@ a:hover {
 /*----------------------------------------
 	header
 ----------------------------------------*/
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 50px;
+  background-color: #fff;
+  -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+@media (min-width: 768px), print {
+  .header {
+    height: 100px;
+  }
+}
+
+.header__logo {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 104.79px;
+          flex: 0 0 104.79px;
+  margin-top: 13.92px;
+  margin-left: 20px;
+}
+
+@media (min-width: 768px), print {
+  .header__logo {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 170px;
+            flex: 0 0 170px;
+    margin-top: 0;
+    margin-left: 40px;
+  }
+}
+
+@media (min-width: 1000px), print {
+  .header__logo {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 209.58px;
+            flex: 0 0 209.58px;
+    margin-left: 50px;
+  }
+}
+
+.header__logo a {
+  display: block;
+}
+
 /*----------------------------------------
 	hamburger
 ----------------------------------------*/
+.hamburger {
+  width: 50px;
+  height: 50px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  border-radius: none;
+  background-color: #37952f;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+}
+
+@media (min-width: 768px), print {
+  .hamburger {
+    display: none;
+  }
+}
+
+#js-btnHamburger .hamburger__line {
+  display: block;
+  width: 25px;
+  height: 2px;
+  background-color: #fff;
+  position: relative;
+  margin: 0 auto;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+#js-btnHamburger .hamburger__line::before, #js-btnHamburger .hamburger__line::after {
+  content: "";
+  display: block;
+  width: 25px;
+  height: 2px;
+  background-color: #fff;
+  position: absolute;
+  left: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+#js-btnHamburger .hamburger__line::before {
+  top: -8px;
+}
+
+#js-btnHamburger .hamburger__line::after {
+  bottom: -8px;
+}
+
+#js-btnHamburger.close .hamburger__line {
+  background-color: transparent;
+}
+
+#js-btnHamburger.close .hamburger__line::before {
+  top: 0;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+#js-btnHamburger.close .hamburger__line::after {
+  bottom: 0;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
 /*----------------------------------------
 	gnav
 ----------------------------------------*/
+.gnav.collapse {
+  display: none;
+}
+
+@media (min-width: 768px), print {
+  .gnav.collapse {
+    display: block;
+  }
+}
+
+.gnav {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  background-color: #fff;
+  width: 100%;
+  height: calc(100vh - 50px);
+  overflow-y: auto;
+}
+
+@media (min-width: 768px), print {
+  .gnav {
+    display: block !important;
+    position: static;
+    margin-left: auto;
+    height: auto;
+  }
+}
+
+.gnav__list {
+  border-top: 1px solid #e7e7e7;
+}
+
+@media (min-width: 768px), print {
+  .gnav__list {
+    border-top: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    padding: 10px;
+  }
+}
+
+@media (min-width: 768px), print {
+  .gnav__item {
+    margin: 0 0.75rem;
+  }
+}
+
+@media (min-width: 1000px), print {
+  .gnav__item {
+    margin: 0 1.125rem;
+  }
+}
+
+.gnav__link {
+  display: block;
+  width: 100%;
+  padding: 20px 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333333;
+  border-bottom: 1px solid #e7e7e7;
+  border-left: 5px solid transparent;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+@media (min-width: 768px), print {
+  .gnav__link {
+    display: inline-block;
+    border-bottom: none;
+    border-left: none;
+    padding: 0 0;
+    position: relative;
+  }
+}
+
+@media (min-width: 1000px), print {
+  .gnav__link {
+    font-size: 1.125rem;
+  }
+}
+
+.gnav__link:hover {
+  border-left: 5px solid #37952f;
+  color: #333333;
+}
+
+@media (min-width: 768px), print {
+  .gnav__link:hover {
+    border-left: none;
+  }
+}
+
+@media (min-width: 768px), print {
+  .gnav__link::after {
+    display: block;
+    content: "";
+    width: 100%;
+    height: 3px;
+    background-color: #37952f;
+    position: absolute;
+    left: 0;
+    bottom: -7px;
+    z-index: 50;
+    opacity: 0;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+  }
+}
+
+@media (min-width: 768px), print {
+  .gnav__link:hover::after {
+    opacity: 1;
+  }
+}
+
 /*----------------------------------------
 	mainContents
 ----------------------------------------*/
+.mainContents {
+  padding-bottom: 34px;
+  background-color: #fff;
+}
+
+@media (min-width: 768px), print {
+  .mainContents {
+    padding-bottom: 41px;
+  }
+}
+
+.mainContents .container {
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px), print {
+  .mainContents .container {
+    padding: 0 40px;
+    max-width: 1164px;
+  }
+}
+
 /*----------------------------------------
 	footer
 ----------------------------------------*/
+.footer {
+  margin: 0 auto;
+  padding: 0 20px;
+  background-color: #333333;
+}
+
+@media (min-width: 768px), print {
+  .footer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 0 50px;
+  }
+}
+
+@media (min-width: 768px), print {
+  .footer__menu {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    border-right: 1px solid #707070;
+  }
+}
+
+.footer__menu a {
+  display: block;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: bold;
+  padding: 0.9375rem 0;
+  border-bottom: 1px solid #707070;
+}
+
+@media (min-width: 768px), print {
+  .footer__menu a {
+    border-bottom: none;
+    border-right: 1px solid #707070;
+    padding: 0.15625rem 0.875rem;
+  }
+}
+
+.footer__menu li:first-child > a {
+  padding-left: 0;
+}
+
+.footer__copyright {
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 2.59375rem 0 2.875rem;
+}
+
+@media (min-width: 768px), print {
+  .footer__copyright {
+    padding: 2.75rem 0 2.9375rem;
+  }
+}
+
 /*----------------------------------------
 	container
 ----------------------------------------*/
 /*----------------------------------------
 	section
 ----------------------------------------*/
+.section {
+  margin-bottom: 46px;
+}
+
+@media (min-width: 768px), print {
+  .section {
+    margin-bottom: 80px;
+  }
+}
+
 /*----------------------------------------
 	heading
 ----------------------------------------*/
+.headingL {
+  font-family: "Oswald", sans-serif;
+  font-size: 1.75rem;
+  color: #333333;
+  font-weight: medium;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  line-height: 1.5;
+  text-align: center;
+}
+
+@media (min-width: 768px), print {
+  .headingL {
+    font-size: 3rem;
+  }
+}
+
 /*----------------------------------------
 	button
 ----------------------------------------*/
+.buttonM {
+  display: inline-block;
+  width: 100%;
+  padding: 0.9375rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #37952f;
+  text-align: center;
+  border: 2px solid #37952f;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.buttonM:hover {
+  background-color: transparent;
+  color: #37952f;
+}
+
+.buttonL {
+  display: inline-block;
+  width: 100%;
+  max-width: 25rem;
+  padding: 1.5625rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  color: #333333;
+  background-color: transparent;
+  text-align: center;
+  border: 2px solid #37952f;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.buttonL:hover {
+  color: #fff;
+  background-color: #37952f;
+}
